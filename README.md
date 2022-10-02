@@ -3,7 +3,7 @@
 [![.NET](https://github.com/MatthiWare/FinancialModelingPrep.NET/actions/workflows/dotnet.yml/badge.svg)](https://github.com/MatthiWare/FinancialModelingPrep.NET/actions/workflows/dotnet.yml)
 [![Nuget](https://buildstats.info/nuget/MatthiWare.FinancialModelingPrep)](https://www.nuget.org/packages/MatthiWare.FinancialModelingPrep/)
 
-.NET 5 API Client For https://financialmodelingprep.com/ API written in C#
+.NET 6 API Client For https://financialmodelingprep.com/ API written in C#
 
 ## Installation
 ```powershell
