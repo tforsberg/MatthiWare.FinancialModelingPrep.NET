@@ -162,7 +162,8 @@ namespace MatthiWare.FinancialModelingPrep.Core.CompanyValuation
             return client.GetJsonAsync<List<CashFlowResponse>>(url, pathParams, queryString);
         }
 
-        public Task<ApiResponse<List<IncomeStatementResponse>>> GetIncomeStatementAsync(string symbol, Period period = Period.Quarter, int? limit = 40)
+        public Task<ApiResponse<List<IncomeStatementResponse>>> GetIncomeStatementAsync
+            (string symbol, Period period = Period.Quarter, int? limit = 40)
         {
             const string url = "[version]/income-statement/[symbol]";
 

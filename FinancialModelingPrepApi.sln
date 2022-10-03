@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31229.75
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinancialModelingPrepApi", "FinancialModelingPrepApi\FinancialModelingPrepApi.csproj", "{B691C86E-CE23-40FA-811E-8D17BE9DD8BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancialModelingPrepApi", "FinancialModelingPrepApi\FinancialModelingPrepApi.csproj", "{B691C86E-CE23-40FA-811E-8D17BE9DD8BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{239A9A06-4A6A-47E8-9255-C9C5FA1BF13D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{239A9A06-4A6A-47E8-9255-C9C5FA1BF13D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingConsoleApp", "TestingConsoleApp\TestingConsoleApp.csproj", "{AB22BC30-B6E2-4DED-946E-5C9ADDBB47B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{239A9A06-4A6A-47E8-9255-C9C5FA1BF13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{239A9A06-4A6A-47E8-9255-C9C5FA1BF13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{239A9A06-4A6A-47E8-9255-C9C5FA1BF13D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB22BC30-B6E2-4DED-946E-5C9ADDBB47B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB22BC30-B6E2-4DED-946E-5C9ADDBB47B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB22BC30-B6E2-4DED-946E-5C9ADDBB47B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB22BC30-B6E2-4DED-946E-5C9ADDBB47B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
