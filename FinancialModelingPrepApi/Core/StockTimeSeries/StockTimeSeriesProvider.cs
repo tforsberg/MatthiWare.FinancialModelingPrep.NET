@@ -103,7 +103,8 @@ namespace MatthiWare.FinancialModelingPrep.Core.StockTimeSeries
         }
 
         /// <inheritdoc/>
-        public Task<ApiResponse<List<HistoricalPriceForChartWithVolumeResponse>>> GetHistoricalPricesForChartWithVolume(string symbol, HistoricalChartSeries series)
+        public Task<ApiResponse<List<HistoricalPriceForChartWithVolumeResponse>>> GetHistoricalPricesForChartWithVolume
+            (string symbol, HistoricalChartSeries series)
         {
             const string url = "[version]/historical-chart/[series]/[symbol]";
 

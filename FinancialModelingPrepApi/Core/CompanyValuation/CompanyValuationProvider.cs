@@ -1,5 +1,6 @@
 ﻿using MatthiWare.FinancialModelingPrep.Abstractions.CompanyValuation;
 using MatthiWare.FinancialModelingPrep.Core.Http;
+using MatthiWare.FinancialModelingPrep.DataAccess.CompanyValuation;
 using MatthiWare.FinancialModelingPrep.Model;
 using MatthiWare.FinancialModelingPrep.Model.CompanyValuation;
 using System;
@@ -13,10 +14,14 @@ namespace MatthiWare.FinancialModelingPrep.Core.CompanyValuation
     public class CompanyValuationProvider : ICompanyValuationProvider
     {
         private readonly FinancialModelingPrepHttpClient client;
+        private readonly ICompanyValuationData refitClient;
 
-        public CompanyValuationProvider(FinancialModelingPrepHttpClient client)
+        public CompanyValuationProvider(
+            FinancialModelingPrepHttpClient client,
+            ICompanyValuationData refitClient)
         {
             this.client = client ?? throw new System.ArgumentNullException(nameof(client));
+            this.refitClient = refitClient ?? throw new System.ArgumentNullException(nameof(refitClient));
         }
 
         public async Task<ApiResponse<CompanyProfileResponse>> GetCompanyProfileAsync(string symbol)
@@ -162,31 +167,55 @@ namespace MatthiWare.FinancialModelingPrep.Core.CompanyValuation
             return client.GetJsonAsync<List<CashFlowResponse>>(url, pathParams, queryString);
         }
 
+        #region Income Statement
+
+        public async Task<ApiResponse<List<IncomeStatementResponse>>> GetIncomeStatementAsync
+            (string symbol)
+        {
+            var result = await refitClient.GetIncomeStatementAsync(symbol);
+
+            return result;
+        }
+
         public Task<ApiResponse<List<IncomeStatementResponse>>> GetIncomeStatementAsync
             (string symbol, Period period = Period.Quarter, int? limit = 40)
         {
-            const string url = "[version]/income-statement/[symbol]";
-
-            var pathParams = new NameValueCollection()
+            IncomeStatementParams pathParams = new()
             {
-                { "version", ApiVersion.v3.ToString() },
-                { "symbol", symbol }
+                Period = period, Limit = limit
             };
+            var result = refitClient.GetIncomeStatementAsync(symbol, pathParams);
 
-            var queryString = new QueryStringBuilder();
-
-            if (limit != null)
-            {
-                queryString.Add("limit", limit);
-            }
-
-            if (period == Period.Quarter)
-            {
-                queryString.Add("period", period.ToString().ToLower());
-            }
-
-            return client.GetJsonAsync<List<IncomeStatementResponse>>(url, pathParams, queryString);
+            return result;
         }
+
+        //public Task<ApiResponse<List<IncomeStatementResponse>>> GetIncomeStatementAsync
+        //    (string symbol, Period period = Period.Quarter, int? limit = 40)
+        //{
+        //    const string url = "[version]/income-statement/[symbol]";
+
+        //    var pathParams = new NameValueCollection()
+        //    {
+        //        { "version", ApiVersion.v3.ToString() },
+        //        { "symbol", symbol }
+        //    };
+
+        //    var queryString = new QueryStringBuilder();
+
+        //    if (limit != null)
+        //    {
+        //        queryString.Add("limit", limit);
+        //    }
+
+        //    if (period == Period.Quarter)
+        //    {
+        //        queryString.Add("period", period.ToString().ToLower());
+        //    }
+
+        //    return client.GetJsonAsync<List<IncomeStatementResponse>>(url, pathParams, queryString);
+        //}
+
+        #endregion
 
         public Task<ApiResponse<List<StockNewsResponse>>> GetStockNewsAsync(string symbol, int? limit = 50)
         {
@@ -567,5 +596,6 @@ namespace MatthiWare.FinancialModelingPrep.Core.CompanyValuation
             return client.GetJsonAsync<List<SymbolChangeResponse>>(url, pathParams, null);
 
         }
+
     }
 }

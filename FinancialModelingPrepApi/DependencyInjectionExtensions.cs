@@ -19,14 +19,19 @@ using MatthiWare.FinancialModelingPrep.Core.MarketIndexes;
 using MatthiWare.FinancialModelingPrep.Core.Statistics;
 using MatthiWare.FinancialModelingPrep.Core.StockMarket;
 using MatthiWare.FinancialModelingPrep.Core.StockTimeSeries;
+using MatthiWare.FinancialModelingPrep.DataAccess.CompanyValuation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Refit;
 using System;
+using static System.Net.WebRequestMethods;
 
 namespace MatthiWare.FinancialModelingPrep
 {
     public static class DependencyInjectionExtensions
     {
+        const string FMP_BASE_URI_STRING = "https://financialmodelingprep.com/api/";
+
         /// <summary>
         /// Adds the <see cref="IFinancialModelingPrepApiClient"/> to the services.
         /// This package does not override any existing registrations. 
@@ -39,11 +44,16 @@ namespace MatthiWare.FinancialModelingPrep
 
             services.AddLogging();
 
-            services.AddHttpClient<FinancialModelingPrepHttpClient>(client 
-                => client.BaseAddress = new Uri("https://financialmodelingprep.com/api/"));
+            services.AddHttpClient<FinancialModelingPrepHttpClient>(client
+                => client.BaseAddress = new Uri(FMP_BASE_URI_STRING));
+
+            services
+                .AddRefitClient<ICompanyValuationData>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(FMP_BASE_URI_STRING));
 
             services.TryAddSingleton<IFinancialModelingPrepApiClient, FinancialModelingPrepApiClient>();
             services.TryAddSingleton<IRequestRateLimiter, RequestRateLimiter>();
+
             services.TryAddTransient<ICompanyValuationProvider, CompanyValuationProvider>();
             services.TryAddTransient<IMarketIndexesProvider, MarketIndexesProvider>();
             services.TryAddTransient<IAdvancedDataProvider, AdvancedDataProvider>();

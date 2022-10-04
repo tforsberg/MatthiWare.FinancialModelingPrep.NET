@@ -44,16 +44,17 @@ namespace MatthiWare.FinancialModelingPrep.Core
         public IFundProvider Fund { get; }
 
         /// <inheritdoc/>
-        public FinancialModelingPrepApiClient(ICompanyValuationProvider companyValuation,
-                                              IMarketIndexesProvider marketIndexes,
-                                              IAdvancedDataProvider advancedData,
-                                              ICalendarsProvider calendars,
-                                              IInstitutionalFundProvider institutionalFund,
-                                              IStockTimeSeriesProvider stockTimeSeries,
-                                              IStockMarketProvider stockMarket,
-                                              IStockStatisticsProvider stockStatistics,
-                                              ICryptoMarketProvider cryptoMarket,
-                                              IFundProvider fund)
+        public FinancialModelingPrepApiClient(
+            ICompanyValuationProvider companyValuation,
+            IMarketIndexesProvider marketIndexes,
+            IAdvancedDataProvider advancedData,
+            ICalendarsProvider calendars,
+            IInstitutionalFundProvider institutionalFund,
+            IStockTimeSeriesProvider stockTimeSeries,
+            IStockMarketProvider stockMarket,
+            IStockStatisticsProvider stockStatistics,
+            ICryptoMarketProvider cryptoMarket,
+            IFundProvider fund)
         {
             CompanyValuation = companyValuation;
             MarketIndexes = marketIndexes;

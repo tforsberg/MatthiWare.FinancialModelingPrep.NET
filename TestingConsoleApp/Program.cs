@@ -7,7 +7,6 @@ Console.WriteLine("Hello, World!");
 
 //Services.AddFinancialModelingPrepApiClient(new FinancialModelingPrepOptions()
 //{
-//    ApiKey = "API-KEY-HERE"
 //});
 
 //var api = ServiceProvider.GetRequiredService<IFinancialModelingPrepApiClient>();
@@ -18,13 +17,14 @@ Console.WriteLine("Hello, World!");
 
 FinancialModelingPrepOptions financialModelingPrepOptions = new FinancialModelingPrepOptions()
 {
-    ApiKey = "7a711b4efd6f42664961b587f8944130"
+    ApiKey = "API-KEY-HERE"
 };
 
 var api = FinancialModelingPrepApiClientFactory.CreateClient(financialModelingPrepOptions);
 
-// do something with api like getting the latest Apple Stock Quote
-var quoteResult = await api.CompanyValuation.GetQuoteAsync("TSLA");
+var quoteResult = await api.CompanyValuation.GetIncomeStatementAsync("TSLA");
+
+//var r = await api.
 
 Console.WriteLine(quoteResult.Data);
 
